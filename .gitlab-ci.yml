@@ -1,0 +1,131 @@
+# ----------------------------------------全局配置---------------------------------------- #
+
+stages:
+  - build
+  - package
+  - deploy
+
+# ----------------------------------------工作任务---------------------------------------- #
+
+build:
+  stage: build
+  tags:
+    - node
+  before_script:
+    - chmod -R +x docker/
+  script:
+    - docker/compile.sh
+  artifacts:
+    name: ${CI_PROJECT_NAME}-${CI_COMMIT_TAG:-${CI_COMMIT_REF_NAME}}-${CI_PIPELINE_ID}
+    paths:
+      - ${CI_PROJECT_DIR}/build
+      - ${CI_PROJECT_DIR}/docker
+    expire_in: 1 week
+  cache:
+    paths:
+      - ${CI_PROJECT_DIR}/node_modules
+  only:
+    - dev
+    - test
+    - preview
+    - master
+    - tags
+
+package:image:
+  stage: package
+  tags:
+    - docker
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - /workspace/scripts/devops.sh package
+  only:
+    - dev
+    - test
+    - preview
+    - master
+    - tags
+
+package:preview:
+  stage: package
+  tags:
+    - docker
+  variables:
+    GIT_STRATEGY: none
+    REGISTRY_HOST: hub.gbc.com
+  script:
+    - /workspace/scripts/devops.sh package
+  only:
+    - preview
+    - /^publish-prod-.*$/
+
+package:prod:
+  stage: package
+  tags:
+    - docker
+  variables:
+    GIT_STRATEGY: none
+    REGISTRY_HOST: hub-ms.lianjia.com
+  script:
+    - /workspace/scripts/devops.sh package
+  only:
+    - master
+    - /^publish-prod-.*$/
+
+# 部署开发环境
+deploy:dev:
+  stage: deploy
+  tags:
+    - deploy
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - /workspace/scripts/devops.sh deploy
+  only:
+    - dev
+    - /^publish-dev-.*$/
+  dependencies: []
+
+# 部署测试环境
+deploy:test:
+  stage: deploy
+  tags:
+    - deploy
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - /workspace/scripts/devops.sh deploy
+  only:
+    - test
+    - /^publish-test-.*$/
+  dependencies: []
+#部署预生产环境
+
+deploy:preview:
+  stage: deploy
+  tags:
+    - deploy
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - /workspace/scripts/devops.sh deploy
+  only:
+    - preview
+    - /^publish-prod-.*$/
+  # when: manual
+  dependencies: []
+
+# 部署正式环境
+deploy:prod:
+  stage: deploy
+  tags:
+    - deploy
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - /workspace/scripts/devops.sh deploy
+  only:
+    - master
+    - /^publish-prod-.*$/
+  when: manual
+  dependencies: []

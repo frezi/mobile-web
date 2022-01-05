@@ -1,0 +1,20 @@
+:global(.uploodLists) {
+  // height: 200px;
+  input {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    overflow: hidden;
+    content: "" !important;
+  }
+}
+
+// :global(.am-flexbox){
+//   height: 150px !important;
+// }
+:global(.am-image-picker-item::after) {
+  content: "" !important;
+}
+:global(.centerContent) {
+  margin-left: 10px;
+}

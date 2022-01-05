@@ -1,0 +1,208 @@
+$layout: 1024px;
+$theme: #0f88eb;
+$theme2: #0f88eb;
+$text3: #999;
+$borderBottom: #ddd;
+
+//cdn
+
+%text_overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+body {
+  background: #f4f4f4;
+  font-size: 14px;
+
+  dl {
+    margin-bottom: 0;
+  }
+
+  dd {
+    margin-bottom: 0;
+  }
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    &:first-child {
+      margin-right: 10px;
+    }
+  }
+}
+
+.clearFix {
+  &:after {
+    content: "";
+    clear: both;
+    visibility: hidden;
+    display: block;
+    height: 0;
+  }
+}
+
+.flexWrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.primaryColor {
+  color: $theme;
+}
+
+body .am-popover-content {
+  transform: translateY(-16px) translateX(-3px);
+}
+
+body .am-popover-inner-wrapper {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 12px;
+}
+
+body .am-popover-inner {
+  font-size: 16px;
+  color: #ffffff;
+}
+
+body .am-popover-arrow {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.btn-disabled {
+  background: #f8f8f8 !important;
+  color: #999999 !important;
+  opacity: 1 !important;
+  &::before {
+    border: none !important;
+  }
+}
+
+// body {
+//   .am-list-body div:not(:last-child) .am-list-line::after {
+//     content: "";
+//     position: absolute;
+//     background-color: #f0f0f0;
+//     display: block;
+//     z-index: 1;
+//     top: auto;
+//     right: auto;
+//     bottom: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 1px;
+//     transform-origin: 50% 100%;
+//     transform: scaleY(0.5);
+//   }
+// }
+
+@media (-webkit-min-device-pixel-ratio: 2dppx) {
+  html:not([data-scale]) .am-list-body {
+    border-top: none;
+  }
+  html:not([data-scale]) .am-list-body::before {
+    content: "";
+    position: absolute;
+    background-color: #f0f0f0;
+    display: block;
+    z-index: 1;
+    top: 0;
+    right: auto;
+    bottom: auto;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    transform-origin: 50% 50%;
+    transform: scaleY(0.5);
+  }
+}
+@media (-webkit-min-device-pixel-ratio: 2dppx) and (-webkit-min-device-pixel-ratio: 3dppx) {
+  html:not([data-scale]) .am-list-body::before {
+    transform: scaleY(0.33);
+  }
+}
+@media (-webkit-min-device-pixel-ratio: 2dppx) {
+  html:not([data-scale]) .am-list-body {
+    border-bottom: none;
+  }
+  html:not([data-scale]) .am-list-body::after {
+    content: "";
+    position: absolute;
+    background-color: #f0f0f0;
+    display: block;
+    z-index: 1;
+    top: auto;
+    right: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    transform-origin: 50% 100%;
+    transform: scaleY(0.5);
+  }
+}
+@media (-webkit-min-device-pixel-ratio: 2dppx) and (-webkit-min-device-pixel-ratio: 3dppx) {
+  html:not([data-scale]) .am-list-body::after {
+    transform: scaleY(0.33);
+  }
+}
+.am-list-body div:not(:last-child) .am-list-line {
+  border-bottom: 1px solid #f0f0f0 !important;
+}
+.am-list-body {
+  border-bottom: none !important;
+  border-top: none !important;
+}
+@media (-webkit-min-device-pixel-ratio: 2dppx) {
+  html:not([data-scale]) .am-list-body div:not(:last-child) .am-list-line {
+    border-bottom: none;
+  }
+  html:not([data-scale])
+    .am-list-body
+    div:not(:last-child)
+    .am-list-line::after {
+    content: "";
+    position: absolute;
+    background-color: #f0f0f0;
+    display: block;
+    z-index: 1;
+    top: auto;
+    right: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    transform-origin: 50% 100%;
+    transform: scaleY(0.5);
+  }
+}
+@media (-webkit-min-device-pixel-ratio: 2dppx) and (-webkit-min-device-pixel-ratio: 3dppx) {
+  html:not([data-scale])
+    .am-list-body
+    div:not(:last-child)
+    .am-list-line::after {
+    transform: scaleY(0.33);
+  }
+}

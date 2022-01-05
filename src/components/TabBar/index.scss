@@ -1,0 +1,14 @@
+.home_tab {
+  .am-tab-bar-bar {
+    height: 50px;
+    &::before {
+      background-color: #fff !important;
+    }
+    border-top: none !important;
+  }
+
+  .am-tab-bar-tab-title {
+    font-size: 12px;
+    font-family: PingFangSC-Regular;
+  }
+}

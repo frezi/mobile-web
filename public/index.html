@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <link rel="apple-touch-icon" href="logo192.png" />
+
+  <title>mobile web template</title>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root" ></div>
+  
+  <!-- ljBridge -->
+  <script>
+    window.$ljBridge = $ljBridge;
+    window.bridgeIns = null;
+    window.webStatusIns = null;
+    window.$ljBridge && window.$ljBridge.ready(function (bridge, webStatus) {
+      window.bridgeIns = bridge;
+      window.webStatusIns = webStatus;
+      var accessToken = bridge.getAccessToken();
+      window.accessToken = accessToken;
+      if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function () {
+          FastClick.attach(document.body);
+        }, false);
+      }
+      if (!window.Promise) {
+        console.log(63648)
+        document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"' + '>' + '<' + '/' + 'script>');
+      }
+      FastClick.attach(document.body);
+
+      window.appType = webStatus.isApp ? "beike" : "其他";
+    });
+  </script>
+  <!-- map.qq====key -->
+  <sctipt
+    src="https://apis.map.qq.com/tools/geolocation/min?&key=KLIBZ-DXQCX-FNY4D-74RKX-OFLWH-Y5FWS&callback=loadLocate&&referer=shequ-app">
+  </sctipt>
+  <!-- vconsole -->
+  <script>
+    if (('%REACT_APP_BRANCH%' !== 'prod' || window.location.href.includes("openVconsole")) && !window.location.href.includes("localhost")) {
+      var _script = document.createElement('script');
+      _script.src = "%PUBLIC_URL%/vconsole.min.js"
+      document.body.appendChild(_script)
+      _script.onload = () => {
+        new VConsole();
+      }
+    }
+  </script>
+   <!--加载罗盘埋点====-->
+ <script>
+  // 获取指定名称的cookie
+  function getCookie(name){
+    var strcookie = document.cookie;//获取cookie字符串
+    var arrcookie = strcookie.split("; ");//分割
+    //遍历匹配
+    for ( var i = 0; i < arrcookie.length; i++) {
+      var arr = arrcookie[i].split("=");
+      if (arr[0] == name){
+        return arr[1];
+      }
+    }
+    return "";
+  }
+
+  window.appType="其他"
+  window.SSIDF = 'ND' + new Date().getTime() + 'T' + Math.round(Math.random() * 1000)
+  // 需要替换1
+  window.__UDL_CONFIG = {
+    pid: "bigc_apph5_shequhuodong",
+    ssid: getCookie("lianjia_ssid"),
+    uuid: getCookie("lianjia_uuid")
+  };
+  /*统计上报目标
+   默认情况下，ULOG脚本会将统计请求发送至 //dig.lianjia.com/t.gif 。
+   现在修改测试环境地址http://test.dig.lianjia.com/t.gif
+   */
+  var h = window.location.hostname
+  window.$ULOG = {};
+  window.$ULOG.autosend = false;
+   // 需要替换2
+  window.$ULOG.target = (h.indexOf('test-shequ.ke')>-1 || h.indexOf('dev-shequ.ke')>-1 || h.indexOf('localhost')>-1) ? '//test.dig.lianjia.com/bigc.gif' : '//dig.lianjia.com/bigc.gif'
+  window.$ULOG.buffer = []
+  window.$ULOG.send = function(evtid, param) {
+    window.$ULOG.buffer.push([evtid, param])
+  };
+  var ulogScript=document.createElement("script")
+  ulogScript.src="https://s1.ljcdn.com/dig-log/static/lianjiaUlog.js" + "?t=" + ((new Date()).getTime())
+  ulogScript.onload=function () {
+    window.$ULOG.setConfig && window.$ULOG.setConfig({
+      token:window.accessToken || getCookie("lianjia_token")
+    });
+  };
+  document.getElementsByTagName("head")[0].appendChild(ulogScript)
+
+ </script>
+   <!-- 灯塔 -->
+   <script
+     src="//s1.ljcdn.com/link-static/resource/plat_framework/fee/js/1.4.2/index.js"
+     crossorigin="anonymous"
+   ></script>
+</body>
+
+</html>

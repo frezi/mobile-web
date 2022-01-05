@@ -1,0 +1,16 @@
+.empty {
+  & > div {
+    width: 221px;
+    margin: 50px auto 30px;
+    img {
+      width: 100%;
+    }
+  }
+  p {
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #999;
+    line-height: 32px;
+    text-align: center;
+  }
+}
