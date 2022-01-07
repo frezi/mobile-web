@@ -3,9 +3,9 @@ const proxy = require("http-proxy-middleware");
 // ==== 代理
 module.exports = function(app) {
   app.use(
-    "/upload",
+    "/apis",
     proxy({
-      target: "http://dev-shequ.ke.com/",
+      target: "http://example.com",
       changeOrigin: true
     })
   );
@@ -16,12 +16,4 @@ module.exports = function(app) {
       changeOrigin: true
     })
   );
-  app.use(
-    "/bapis",
-    proxy({
-      target: "http://dev-shequ.ke.com/",
-      changeOrigin: true
-    })
-  );
-  
 };

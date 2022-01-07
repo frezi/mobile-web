@@ -56,7 +56,7 @@ const Layout: React.FC = ({ children }) => {
 
   //假登录
   const fakeLogin = useCallback(() => {
-    const token = "ST-63926-LdSeBgLmnpf-1JC8ubM7jILVv4o-ke.com";
+    const token = "ST-63926-LdSeBgLmnpf-1JC8ubM7jILVv4o";
     setCookie("sap_activity_token", token);
     Login({ ticket: token }).then(() => {
       toGetUserInfo(token);
