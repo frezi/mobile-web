@@ -9,11 +9,4 @@ module.exports = function(app) {
       changeOrigin: true
     })
   );
-  app.use(
-    "/cuser",
-    proxy({
-      target: "http://dev-shequ.ke.com/",
-      changeOrigin: true
-    })
-  );
 };
